@@ -85,34 +85,40 @@
     .search-bar {
       display: flex;
       align-items: center;
-      background: #181a2f;
+      background: #fff;
       border-radius: 28px;
       padding: 5px 10px;
       margin: 0 10px;
       min-width: 210px;
       width: 260px;
       transition: box-shadow 0.2s;
-      box-shadow: 0 2px 9px #b6e5ff20;
-      border: 1.5px solid #2f3cbf66;
+      box-shadow: 0 0px 3px #fff;
+      border: 1.5px solid #000;
       position: relative;
     }
+    /* Ubah warna teks input jadi hitam */
     .search-bar input {
       background: transparent;
       border: none;
       outline: none;
-      color: white;
+      color: #000 !important; /* Ubah warna teks menjadi hitam */
       font-weight: bold;
       font-size: 1em;
       width: 100%;
       padding: 4px 0 4px 5px;
       cursor: pointer;
+      /* Tambahkan placeholder warna hitam juga */
+    }
+    .search-bar input::placeholder {
+      color: #000 !important; /* placeholder hitam */
+      opacity: 1;
     }
     .search-bar button {
       background: none;
       border: none;
       outline: none;
       cursor: pointer;
-      color: #2f3cbf;
+      color: #000;
       font-size: 1.3em;
       margin-left: 4px;
       padding: 2px 5px 2px 4px;
@@ -120,18 +126,18 @@
       transition: background 0.15s;
     }
     .search-bar button:hover {
-      background: #2f3cbf33;
+      background: #fff;
       color: #fff;
     }
     .jual-akun-btn {
-      background: linear-gradient(90deg, #2531a4 0%, #2f3cbf 100%);
+      background: #94939f;
       color: #fff;
       font-weight: bold;
       padding: 8px 22px;
       border: none;
-      border-radius: 8px;
+      border-radius: 28px;
       font-size: 1.06em;
-      box-shadow: 0 2px 12px #2f3cbf60, 0 1.5px 12px #fff2 inset;
+      border: 1px solid #fff;
       cursor: pointer;
       transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
       letter-spacing: 0.8px;
@@ -149,7 +155,7 @@
       left: -30%;
       top: -20%;
       width: 70%;
-      height: 130%;
+      height: 150%;
       background: linear-gradient(120deg,rgba(255,255,255,0.18) 10%,rgba(255,255,255,0.00) 70%);
       transform: skewX(-18deg);
       transition: left 0.3s;
@@ -178,7 +184,7 @@
       .logo-group { justify-content: center; }
       .search-bar { width: 100%; min-width: 0; margin: 5px 0; }
       .jual-akun-btn {
-        width: 260px !important;
+        width: 350px !important;
         min-width: 0 !important;
         max-width: 280px !important;
         justify-content: center;
@@ -217,6 +223,7 @@
       font-weight: bold;
       display: flex;
       align-items: center;
+      size: 100px;
     }
     /* Tambahkan scroll horizontal untuk flash sale dan top up */
     .flash-scroll-container {
@@ -461,7 +468,7 @@
     </div>
     <div class="navbar-actions">
       <form class="search-bar" id="searchForm" autocomplete="off" onsubmit="return false;">
-        <input type="text" id="searchInput" placeholder="CARI GAME ...." aria-label="Cari Game" autocomplete="off" readonly style="cursor:pointer;">
+        <input type="text" id="searchInput" placeholder="CARI GAME ...." aria-label="Cari Game" autocomplete="off" readonly style="cursor:pointer; color:#000 !important;">
         <button type="submit" title="Cari" tabindex="-1"><span>&#128269;</span></button>
       </form>
       <a class="jual-akun-btn" id="jualAkunBtn" href="https://wa.me/6282328581304" target="_blank"><span>🛒</span>JUAL AKUN</a>
@@ -522,7 +529,7 @@
     </div>
     <div class="topup-item">
       <div class="content"><a href="#"><img src="hsr.png " alt="Top Up"></a></div>
-      <div class="label">Honkai Star RAil</div>
+      <div class="label">Honkai Star Ra il</div>
       <a href="topup-ml.html"><div class="button">TOP UP</div></a>
     </div>
     <div class="topup-item">
@@ -558,25 +565,25 @@
     <div class="akun-item">
       <div class="content"><a href="#"><img src="ml.png" alt="Akun"></a></div>
       <div class="label">MOBILE LEGEND</div>
-      <a href="#"><div class="button">LIHAT</div></a>
+   <a href="akun.html"><div class="button">TOP UP</div></a>
     </div>
     <div class="akun-item">
-      <div class="content"><a href="#"><img src="VALO.PNG" alt="Akun"></a></div>
+      <div class="content"><a href="#"><img src="valo.png" alt="Akun"></a></div>
       <div class="label">VALORANT</div>
       <a href="#"><div class="button">LIHAT</div></a>
     </div>
     <div class="akun-item">
-      <div class="content"><a href="#"><img src="PUPG.PNG" alt="Akun"></a></div>
+      <div class="content"><a href="#"><img src="pupg.png" alt="Akun"></a></div>
       <div class="label">PUBG MOBILE</div>
       <a href="#"><div class="button">LIHAT</div></a>
     </div>
     <div class="akun-item">
-      <div class="content"><a href="#"><img src="GI.PNG" alt="Akun"></a></div>
+      <div class="content"><a href="#"><img src="gi.png" alt="Akun"></a></div>
       <div class="label">GENSHIN IMPACT</div>
       <a href="#"><div class="button">LIHAT</div></a>
     </div>
     <div class="akun-item">
-      <div class="content"><a href="#"><img src="FF.PNG" alt="Akun"></a></div>
+      <div class="content"><a href="#"><img src="ff.png" alt="Akun"></a></div>
       <div class="label">FREE FIRE</div>
       <a href="#"><div class="button">LIHAT</div></a>
     </div>
