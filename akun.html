@@ -14,81 +14,112 @@
     /* Navbar */
     .navbar {
       width: 100%;
-      background: linear-gradient(90deg, #2531a4 10%, #2f3cbf 100%);
+      background: linear-gradient(90deg, #20284e 0%, #2531a4 60%, #2f3cbf 100%);
       color: #fff;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 10px 18px;
-      box-shadow: 0 2px 12px #0004;
-      font-size: 1.13em;
+      padding: 0 28px 0 14px;
+      box-shadow: 0 2px 18px #0006;
+      font-size: 1.19em;
       letter-spacing: 1px;
+      min-height: 65px;
+      position: sticky;
+      top: 0;
+      z-index: 99;
+      flex-wrap: nowrap;
+      /* Prevent wrap to keep one line */
     }
     .navbar .brand {
+      display: flex;
+      align-items: center;
       font-weight: bold;
-      font-size: 1.18em;
-      letter-spacing: 2px;
-      text-shadow: 1px 1px 2px #0005;
+      font-size: 1.32em;
+      letter-spacing: 2.2px;
+      text-shadow: 1px 1px 8px #1a1a5a77;
+      white-space: nowrap;
+    }
+    .navbar .brand img {
+      width: 38px;
+      height: 38px;
+      margin-right: 9px;
+      border-radius: 7px;
+      box-shadow: 0 2px 8px #0004;
+      background: #fff;
+      object-fit: contain;
     }
     .navbar .nav-links {
       display: flex;
-      gap: 18px;
+      gap: 5px;
+      align-items: center;
+      font-size: 1em;
+      letter-spacing: 1.2px;
     }
     .navbar .nav-links a {
       color: #fff;
       text-decoration: none;
       font-weight: 500;
-      transition: color 0.18s;
+      border-radius: 6px;
+      padding: 7px 15px;
+      transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+      position: relative;
     }
-    .navbar .nav-links a:hover {
+    .navbar .nav-links a:hover,
+    .navbar .nav-links a.active {
+      background: #2531a4;
       color: #44eaff;
+      box-shadow: 0 2px 8px #2f3cbf66;
     }
 
     /* Section Title */
     .section-title {
-      margin:28px 10px 10px 10px;
+      margin:35px 10px 12px 10px;
       text-align: left;
-      font-size: 1.48em;
+      font-size: 1.55em;
       font-weight: bold;
-      letter-spacing: 1.2px;
+      letter-spacing: 1.3px;
       color: #fff;
       display: flex;
       align-items: center;
       text-shadow: 0 2px 8px #2531a477;
-      gap: 12px;
+      gap: 14px;
     }
     .section-title .logo-section {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 36px;
-      height: 36px;
+      width: 40px;
+      height: 40px;
       background: #fff;
-      border-radius: 5PX;
+      border-radius: 7px;
       margin-right: 2px;
       overflow: hidden;
+      /* Remove box-shadow to remove "garis" under image */
+      box-shadow: none;
     }
     .section-title .logo-section img {
-      width: 30px;
-      height: 30px;
+      width: 34px;
+      height: 34px;
       display: block;
       object-fit: contain;
       background: #fff;
-      border: none; /* Remove border from logo images */
+      border: none;
+      /* Remove border and outline just in case */
+      outline: none;
+      box-shadow: none;
     }
+
     /* Carousel Container */
     .carousel-container {
-      padding: 0 0 18px 0;
+      padding: 0 0 25px 0;
       margin: 0 auto;
       max-width: 100vw;
     }
     .carousel-scroll {
       display: flex;
       flex-wrap: nowrap;
-      gap: 16px;
       overflow-x: auto;
       scroll-behavior: smooth;
-      padding: 8px 10px 18px 10px;
       scrollbar-width: thin;
       overscroll-behavior-x: contain;
       -webkit-overflow-scrolling: touch;
@@ -96,65 +127,112 @@
     }
     .carousel-item {
       flex: 0 0 auto;
-      border-radius: 10px;
+      border-radius: 2px;
       overflow: hidden;
-      box-shadow: 0 2px 12px #0006;
+      box-shadow: 0 4px 20px #0008;
       background: #1a1a22;
-      width: auto;
-      height: auto;
-      scroll-snap-align: start;
-      position: relative;
-      transition: transform 0.17s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      width: 240px;
+      height: 350px;
+    
     }
     .carousel-item img {
       display: block;
-      width: auto;
-      height: auto;
-      max-width: 92vw;
-      max-height: 320px;
-      object-fit: contain;
+      width: 100%;
+      height: 100%;
+      max-width: 420px;
+      max-height: 400px;
+      object-fit: cover;
       background: #111;
-      border: none; /* Remove border from carousel images */
-      outline: none; /* Remove possible focus outlines */
-      box-shadow: none; /* Remove any box-shadow */
+      border: none;
+      outline: none;
+      box-shadow: none;
+      transition: transform 0.16s;
+    }
+    .carousel-item:hover img {
+      transform: scale(1.05);
     }
     /* Responsive */
-    @media (max-width: 600px) {
-      .carousel-item img {
-        max-width: 96vw;
-        max-height: 220px;
+    @media (max-width: 900px) {
+      .carousel-item {
+        width: 170px;
+        height: 230px;
       }
-      .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 6px;
-        padding: 13px 8px;
+      .carousel-item img {
+        max-width: 95vw;
+        max-height: 260px;
       }
       .section-title {
-        font-size: 1.12em;
-        gap: 7px;
+        font-size: 1.17em;
+        gap: 8px;
       }
       .section-title .logo-section {
-        width: 26px;
-        height: 26px;
+        width: 28px;
+        height: 28px;
       }
       .section-title .logo-section img {
-        width: 20px;
-        height: 20px;
+        width: 22px;
+        height: 22px;
       }
+      .navbar {
+        font-size: 1em;
+        padding: 10px 8px;
+      }
+      .navbar .brand img {
+        width: 28px;
+        height: 28px;
+        margin-right: 5px;
+      }
+      .navbar .nav-links {
+        gap: 13px;
+      }
+    }
+    @media (max-width: 600px) {
+      .carousel-item {
+        width: 140px;
+        height: 160px;
+      }
+      .carousel-item img {
+        max-width: 96vw;
+        max-height: 150px;
+      }
+      /* Navbar stays 1 line, scroll if necessary */
+      .navbar {
+        flex-direction: row;
+        align-items: center;
+        gap: 0;
+        min-height: unset;
+        padding: 7px 4px 7px 4px;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        white-space: nowrap;
+      }
+      .navbar .brand {
+        font-size: 1.09em;
+        flex-shrink: 0;
+      }
+      .navbar .nav-links {
+        flex-shrink: 0;
+      }
+    }
+
+    /* Dual-row scroll for MLBB account */
+    .dual-row {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 15px;
     }
   </style>
 </head>
 <body>
   <!-- Navbar -->
   <nav class="navbar">
-    <span class="brand">Zeen Market</span>
+    <span class="brand">
+      <img src="ml.png" alt="Logo Zeen Market">
+      Zeen Market
+    </span>
     <div class="nav-links">
-      <a href="#">Beranda</a>
-      <a href="#">Akun MLBB</a>
+      <a href="#" class="active">Beranda</a>
       <a href="#">Top Up</a>
       <a href="#">Kontak</a>
     </div>
@@ -164,9 +242,9 @@
     <span class="logo-section">
       <img src="ml.png" alt="MLBB Logo">
     </span>
-    ACOUNT MOBILE LEGEND
+    AKUN MOBILE LEGEND
   </div>
-  <div class="carousel-container">
+  <div class="carousel-container dual-row">
     <div class="carousel-scroll">
       <div class="carousel-item"><img src="ml94867-2799k-s1-1748005694.webp" alt="MLBB 1"></div>
       <div class="carousel-item"><img src="ml94867-2799k-s1-1748005694.webp" alt="MLBB 2"></div>
@@ -175,6 +253,8 @@
       <div class="carousel-item"><img src="ml94867-2799k-s1-1748005694.webp" alt="MLBB 5"></div>
       <div class="carousel-item"><img src="ml94867-2799k-s1-1748005694.webp" alt="MLBB 6"></div>
       <div class="carousel-item"><img src="ml94867-2799k-s1-1748005694.webp" alt="MLBB 7"></div>
+    </div>
+    <div class="carousel-scroll">
       <div class="carousel-item"><img src="ml94867-2799k-s1-1748005694.webp" alt="MLBB 8"></div>
       <div class="carousel-item"><img src="ml94867-2799k-s1-1748005694.webp" alt="MLBB 9"></div>
       <div class="carousel-item"><img src="ml94867-2799k-s1-1748005694.webp" alt="MLBB 10"></div>
@@ -189,7 +269,7 @@
     <span class="logo-section">
       <img src="ff.png" alt="Free Fire Logo">
     </span>
-    ACOUNT FREE FIRE
+    AKUN FREE FIRE
   </div>
   <div class="carousel-container">
     <div class="carousel-scroll">
