@@ -213,29 +213,25 @@
       z-index: 1;
     }
     .section-title {
-      margin: 28px 10px 10px 10px; /* Naikkan margin-top agar lebih bawah */
+      margin: 28px 10px 10px 10px;
       font-weight: bold;
       display: flex;
       align-items: center;
     }
+    /* Tambahkan scroll horizontal untuk flash sale dan top up */
     .flash-scroll-container {
       display: flex;
-      overflow-x: auto;
-      gap: 1px;
+      flex-wrap: nowrap;
+      gap: 10px;
       padding: 10px 0 10px 10px;
-      scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
-      cursor: grab;
+      cursor: auto;
       user-select: none;
+      scroll-behavior: smooth;
       scroll-snap-type: x mandatory;
-      /* Tambahan agar efek snap lebih licin */
+      overflow-x: auto;
       overscroll-behavior-x: contain;
-      /* Scrollbar tipis (untuk Chrome) */
-      scrollbar-width: thin;
-      scrollbar-color: #444 #222;
-    }
-    .flash-scroll-container:active {
-      cursor: grabbing;
+      -webkit-overflow-scrolling: touch;
+  
     }
     .flash-item {
       flex: 0 0 auto;
@@ -246,25 +242,21 @@
       justify-content: center;
       align-items: center;
       height: auto;
-      margin-right: 10px;
+      margin-right: 0;
       transition: box-shadow 0.22s cubic-bezier(.5,1.5,.5,1), transform 0.33s cubic-bezier(.5,1.5,.5,1);
       padding: 0;
-      opacity: 0;
-      transform: translateX(60px);
-      animation: flash-slide-in 0.7s forwards;
-      scroll-snap-align: center;
+      opacity: 1;
+      transform: none;
+      animation: none;
+      box-shadow: none;
+      scroll-snap-align: start;
       scroll-snap-stop: always;
+      min-width: 120px;
     }
     .flash-item.active {
-      transform: scale(1.15);
-      z-index: 2;
-      box-shadow: 0 4px 16px #44eaff99;
-    }
-    @keyframes flash-slide-in {
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
+      transform: none;
+      z-index: auto;
+      box-shadow: none;
     }
     .flash-item:last-child {
       margin-right: 0;
@@ -290,25 +282,21 @@
       pointer-events: none;
       user-select: none;
     }
-    .flash-scroll-container::-webkit-scrollbar,
-    .scroll-container::-webkit-scrollbar {
-      display: none;
-    }
     .scroll-container {
       display: flex;
-      overflow-x: auto;
+      flex-wrap: nowrap;
       gap: 10px;
       padding: 10px;
-      cursor: grab;
+      cursor: auto;
       user-select: none;
       scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
       scrollbar-width: thin;
-      scrollbar-color: #444 #222;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-x: contain;
+      scroll-snap-type: x mandatory;
     }
-    .scroll-container:active {
-      cursor: grabbing;
-    }
+    
     .topup-item, .akun-item {
       flex: 0 0 auto;
       width: 100px;
@@ -316,13 +304,15 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      background-color: #d2f3ff;
+      background-color: #c3c2cb;
       border-radius: 10px; 
-      border: 2px solid #2f269e;
+      border: 2px solid #fff;
       position: relative;
       align-items: center;
       justify-content: flex-start;
       box-shadow: 0 2px 9px #000;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
     }
     .topup-item .content, .akun-item .content {
       display: flex;
@@ -358,7 +348,7 @@
       margin-top: 2px;
     }
     .button {
-      background-color: #43c3f3;
+      background-color: #4f4f50;
       padding: 8px;
       color: white;
       font-weight: bold;
@@ -511,7 +501,6 @@
     <div class="flash-item"><a href="https://wa.me/6282328581304?text=Min take akun" target="_blank"><img src="c.png" alt="Flash 1"></a></div>
     <div class="flash-item"><a href="https://wa.me/6282328581304?text=Min take akun" target="_blank"><img src="c.png" alt="Flash 1"></a></div>
     <div class="flash-item"><a href="https://wa.me/6282328581304?text=Min take akun" target="_blank"><img src="c.png" alt="Flash 1"></a></div>
-    
   </div>
 
   <div class="section-title">TOP UP GAME 💎</div>
@@ -565,135 +554,78 @@
 
   <div class="section-title">AKUN GAME</div>
   <div class="scroll-container" id="akunGameList">
+   
     <div class="akun-item">
       <div class="content"><a href="#"><img src="https://via.placeholder.com/130x100" alt="Akun"></a></div>
       <div class="label">MOBILE LEGEND</div>
       <a href="#"><div class="button">LIHAT</div></a>
     </div>
+    <div class="akun-item">
+      <div class="content"><a href="#"><img src="https://via.placeholder.com/130x100" alt="Akun"></a></div>
+      <div class="label">MOBILE LEGEND</div>
+      <a href="#"><div class="button">LIHAT</div></a>
+    </div>
+    <div class="akun-item">
+      <div class="content"><a href="#"><img src="https://via.placeholder.com/130x100" alt="Akun"></a></div>
+      <div class="label">MOBILE LEGEND</div>
+      <a href="#"><div class="button">LIHAT</div></a>
+    </div>
+    <div class="akun-item">
+      <div class="content"><a href="#"><img src="https://via.placeholder.com/130x100" alt="Akun"></a></div>
+      <div class="label">MOBILE LEGEND</div>
+      <a href="#"><div class="button">LIHAT</div></a>
+    </div>
+    <div class="akun-item">
+      <div class="content"><a href="#"><img src="https://via.placeholder.com/130x100" alt="Akun"></a></div>
+      <div class="label">MOBILE LEGEND</div>
+      <a href="#"><div class="button">LIHAT</div></a>
+    </div>
+    <div class="akun-item">
+      <div class="content"><a href="#"><img src="https://via.placeholder.com/130x100" alt="Akun"></a></div>
+      <div class="label">MOBILE LEGEND</div>
+      <a href="#"><div class="button">LIHAT</div></a>
+    </div>
+    <div class="akun-item">
+      <div class="content"><a href="#"><img src="https://via.placeholder.com/130x100" alt="Akun"></a></div>
+      <div class="label">MOBILE LEGEND</div>
+      <a href="#"><div class="button">LIHAT</div></a>
+    </div>
+    <div class="akun-item">
+      <div class="content"><a href="#"><img src="https://via.placeholder.com/130x100" alt="Akun"></a></div>
+      <div class="label">MOBILE LEGEND</div>
+      <a href="#"><div class="button">LIHAT</div></a>
+    </div>
+    <div class="akun-item">
+      <div class="content"><a href="#"><img src="https://via.placeholder.com/130x100" alt="Akun"></a></div>
+      <div class="label">MOBILE LEGEND</div>
+      <a href="#"><div class="button">LIHAT</div></a>
+    </div>
+    <div class="akun-item">
+      <div class="content"><a href="#"><img src="https://via.placeholder.com/130x100" alt="Akun"></a></div>
+      <div class="label">MOBILE LEGEND</div>
+      <a href="#"><div class="button">LIHAT</div></a>
+    </div>
+    <div class="akun-item">
+      <div class="content"><a href="#"><img src="https://via.placeholder.com/130x100" alt="Akun"></a></div>
+      <div class="label">MOBILE LEGEND</div>
+      <a href="#"><div class="button">LIHAT</div></a>
+    </div>
+    <div class="akun-item">
+      <div class="content"><a href="#"><img src="https://via.placeholder.com/130x100" alt="Akun"></a></div>
+      <div class="label">MOBILE LEGEND</div>
+      <a href="#"><div class="button">LIHAT</div></a>
+    </div>
+    <div class="akun-item">
+      <div class="content"><a href="#"><img src="https://via.placeholder.com/130x100" alt="Akun"></a></div>
+      <div class="label">MOBILE LEGEND</div>
+      <a href="#"><div class="button">LIHAT</div></a>
+    </div>
+    
     <!-- ... (item lainnya tetap) ... -->
   </div>
 
   <script>
-    // --- ANIMASI SLIDE-IN FLASH SALE ---
-    document.addEventListener("DOMContentLoaded", function() {
-      const flashItems = document.querySelectorAll('.flash-item');
-      flashItems.forEach((item, i) => {
-        item.style.animationDelay = (i * 0.13) + "s";
-      });
-    });
-
-    // --- Flash Sale: Highlight active/center item ---
-    function highlightActiveFlash() {
-      const container = document.getElementById('flashScroll');
-      const items = container.querySelectorAll('.flash-item');
-      let containerRect = container.getBoundingClientRect();
-      let containerCenter = containerRect.left + containerRect.width/2;
-      let minDist = Infinity, activeIndex = 0;
-      items.forEach((item, idx) => {
-        let rect = item.getBoundingClientRect();
-        let itemCenter = rect.left + rect.width/2;
-        let dist = Math.abs(itemCenter - containerCenter);
-        if (dist < minDist) {
-          minDist = dist;
-          activeIndex = idx;
-        }
-      });
-      items.forEach((item, idx) => {
-        item.classList.toggle('active', idx === activeIndex);
-      });
-    }
-    document.addEventListener("DOMContentLoaded", highlightActiveFlash);
-    document.getElementById('flashScroll').addEventListener('scroll', highlightActiveFlash);
-    window.addEventListener('resize', highlightActiveFlash);
-
-    // --- ENABLE DRAG SCROLL ---
-
-    // Versi lebih licin: event window.requestAnimationFrame + momentum
-    function enableDragScroll(containerId) {
-      const el = document.getElementById(containerId);
-      let isDown = false;
-      let startX, scrollLeft;
-      let velocity = 0, raf, lastX, lastTime, momentum = false;
-
-      function easeMomentum() {
-        if (Math.abs(velocity) > 0.7) {
-          el.scrollLeft -= velocity;
-          velocity *= 0.94;
-          raf = requestAnimationFrame(easeMomentum);
-        } else {
-          raf = null;
-          momentum = false;
-        }
-      }
-
-      el.addEventListener('mousedown', (e) => {
-        isDown = true;
-        momentum = false;
-        if (raf) cancelAnimationFrame(raf);
-        el.classList.add('active');
-        startX = e.pageX - el.offsetLeft;
-        scrollLeft = el.scrollLeft;
-        lastX = e.pageX;
-        lastTime = Date.now();
-      });
-      el.addEventListener('mouseleave', () => {
-        isDown = false;
-        el.classList.remove('active');
-      });
-      el.addEventListener('mouseup', (e) => {
-        isDown = false;
-        el.classList.remove('active');
-        const dt = Date.now() - lastTime;
-        if (dt < 120) {
-          momentum = true;
-          raf = requestAnimationFrame(easeMomentum);
-        }
-      });
-      el.addEventListener('mousemove', (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - el.offsetLeft;
-        velocity = (e.pageX - lastX);
-        lastX = e.pageX;
-        lastTime = Date.now();
-        const walk = (x - startX) * 1.05;
-        el.scrollLeft = scrollLeft - walk;
-      });
-
-      // Touch support + momentum
-      el.addEventListener('touchstart', (e) => {
-        isDown = true;
-        momentum = false;
-        if (raf) cancelAnimationFrame(raf);
-        startX = e.touches[0].pageX - el.offsetLeft;
-        scrollLeft = el.scrollLeft;
-        lastX = e.touches[0].pageX;
-        lastTime = Date.now();
-      });
-      el.addEventListener('touchend', (e) => {
-        isDown = false;
-        const dt = Date.now() - lastTime;
-        if (dt < 150) {
-          momentum = true;
-          raf = requestAnimationFrame(easeMomentum);
-        }
-      });
-      el.addEventListener('touchmove', (e) => {
-        if (!isDown) return;
-        const x = e.touches[0].pageX - el.offsetLeft;
-        velocity = (e.touches[0].pageX - lastX);
-        lastX = e.touches[0].pageX;
-        lastTime = Date.now();
-        const walk = (x - startX) * 1.05;
-        el.scrollLeft = scrollLeft - walk;
-      });
-    }
-    document.addEventListener("DOMContentLoaded", function() {
-      enableDragScroll('flashScroll');
-      enableDragScroll('topupSection');
-      // enableDragScroll('akunGameList'); // aktifkan jika ingin akun game bisa drag
-    });
-
+    // Hilangkan fitur animasi/scroll/slide untuk flash sale & topup
     // -------- FITUR CARI GAME MAINTENANCE --------
     const searchInput = document.getElementById('searchInput');
     const notifMaintenance = document.getElementById('notifMaintenance');
