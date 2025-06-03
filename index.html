@@ -227,6 +227,12 @@
       -webkit-overflow-scrolling: touch;
       cursor: grab;
       user-select: none;
+      scroll-snap-type: x mandatory;
+      /* Tambahan agar efek snap lebih licin */
+      overscroll-behavior-x: contain;
+      /* Scrollbar tipis (untuk Chrome) */
+      scrollbar-width: thin;
+      scrollbar-color: #444 #222;
     }
     .flash-scroll-container:active {
       cursor: grabbing;
@@ -241,11 +247,13 @@
       align-items: center;
       height: auto;
       margin-right: 10px;
-      transition: box-shadow 0.2s, transform 0.35s cubic-bezier(.5,1.5,.5,1);
+      transition: box-shadow 0.22s cubic-bezier(.5,1.5,.5,1), transform 0.33s cubic-bezier(.5,1.5,.5,1);
       padding: 0;
       opacity: 0;
       transform: translateX(60px);
       animation: flash-slide-in 0.7s forwards;
+      scroll-snap-align: center;
+      scroll-snap-stop: always;
     }
     .flash-item.active {
       transform: scale(1.15);
@@ -279,6 +287,8 @@
       box-shadow: 0 2px 8px #0007;
       background: #222;
       max-width: 180px;
+      pointer-events: none;
+      user-select: none;
     }
     .flash-scroll-container::-webkit-scrollbar,
     .scroll-container::-webkit-scrollbar {
@@ -291,6 +301,10 @@
       padding: 10px;
       cursor: grab;
       user-select: none;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: #444 #222;
     }
     .scroll-container:active {
       cursor: grabbing;
@@ -587,46 +601,84 @@
     window.addEventListener('resize', highlightActiveFlash);
 
     // --- ENABLE DRAG SCROLL ---
+
+    // Versi lebih licin: event window.requestAnimationFrame + momentum
     function enableDragScroll(containerId) {
       const el = document.getElementById(containerId);
       let isDown = false;
       let startX, scrollLeft;
+      let velocity = 0, raf, lastX, lastTime, momentum = false;
+
+      function easeMomentum() {
+        if (Math.abs(velocity) > 0.7) {
+          el.scrollLeft -= velocity;
+          velocity *= 0.94;
+          raf = requestAnimationFrame(easeMomentum);
+        } else {
+          raf = null;
+          momentum = false;
+        }
+      }
 
       el.addEventListener('mousedown', (e) => {
         isDown = true;
+        momentum = false;
+        if (raf) cancelAnimationFrame(raf);
         el.classList.add('active');
         startX = e.pageX - el.offsetLeft;
         scrollLeft = el.scrollLeft;
+        lastX = e.pageX;
+        lastTime = Date.now();
       });
       el.addEventListener('mouseleave', () => {
         isDown = false;
         el.classList.remove('active');
       });
-      el.addEventListener('mouseup', () => {
+      el.addEventListener('mouseup', (e) => {
         isDown = false;
         el.classList.remove('active');
+        const dt = Date.now() - lastTime;
+        if (dt < 120) {
+          momentum = true;
+          raf = requestAnimationFrame(easeMomentum);
+        }
       });
       el.addEventListener('mousemove', (e) => {
         if (!isDown) return;
         e.preventDefault();
         const x = e.pageX - el.offsetLeft;
-        const walk = (x - startX) * 1.3;
+        velocity = (e.pageX - lastX);
+        lastX = e.pageX;
+        lastTime = Date.now();
+        const walk = (x - startX) * 1.05;
         el.scrollLeft = scrollLeft - walk;
       });
 
-      // Touch support
+      // Touch support + momentum
       el.addEventListener('touchstart', (e) => {
         isDown = true;
+        momentum = false;
+        if (raf) cancelAnimationFrame(raf);
         startX = e.touches[0].pageX - el.offsetLeft;
         scrollLeft = el.scrollLeft;
+        lastX = e.touches[0].pageX;
+        lastTime = Date.now();
       });
-      el.addEventListener('touchend', () => {
+      el.addEventListener('touchend', (e) => {
         isDown = false;
+        const dt = Date.now() - lastTime;
+        if (dt < 150) {
+          momentum = true;
+          raf = requestAnimationFrame(easeMomentum);
+        }
       });
       el.addEventListener('touchmove', (e) => {
         if (!isDown) return;
         const x = e.touches[0].pageX - el.offsetLeft;
-        const walk = (x - startX) * 1.3;
+        velocity = (e.touches[0].pageX - lastX);
+        lastX = e.touches[0].pageX;
+        lastTime = Date.now();
+        const walk = (x - startX) * 1.05;
         el.scrollLeft = scrollLeft - walk;
       });
     }
