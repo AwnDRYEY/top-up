@@ -499,13 +499,19 @@
 
   <div class="section-title">FLASH SALE ⚡</div>
   <div class="flash-scroll-container" id="flashScroll">
-    <div class="flash-item"><a href="flash1.html"><img src="c.png" alt="Flash 1"></a></div>
-    <div class="flash-item"><a href="flash2.html"><img src="c.png" alt="Flash 2"></a></div>
-    <div class="flash-item"><a href="flash3.html"><img src="c.png" alt="Flash 3"></a></div>
-    <div class="flash-item"><a href="flash4.html"><img src="c.png" alt="Flash 4"></a></div>
-    <div class="flash-item"><a href="flash5.html"><img src="c.png" alt="Flash 5"></a></div>
-    <div class="flash-item"><a href="flash6.html"><img src="c.png" alt="Flash 6"></a></div>
-    <div class="flash-item"><a href="flash7.html"><img src="c.png" alt="Flash 7"></a></div>
+    <div class="flash-item"><a href="https://wa.me/6282328581304?text=Min take akun" target="_blank"><img src="c.png" alt="Flash 1"></a></div>
+    <div class="flash-item"><a href="https://wa.me/6282328581304?text=Min take akun" target="_blank"><img src="c.png" alt="Flash 1"></a></div>
+    <div class="flash-item"><a href="https://wa.me/6282328581304?text=Min take akun" target="_blank"><img src="c.png" alt="Flash 1"></a></div>
+    <div class="flash-item"><a href="https://wa.me/6282328581304?text=Min take akun" target="_blank"><img src="c.png" alt="Flash 1"></a></div>
+    <div class="flash-item"><a href="https://wa.me/6282328581304?text=Min take akun" target="_blank"><img src="c.png" alt="Flash 1"></a></div>
+    <div class="flash-item"><a href="https://wa.me/6282328581304?text=Min take akun" target="_blank"><img src="c.png" alt="Flash 1"></a></div>
+    <div class="flash-item"><a href="https://wa.me/6282328581304?text=Min take akun" target="_blank"><img src="c.png" alt="Flash 1"></a></div>
+    <div class="flash-item"><a href="https://wa.me/6282328581304?text=Min take akun" target="_blank"><img src="c.png" alt="Flash 1"></a></div>
+    <div class="flash-item"><a href="https://wa.me/6282328581304?text=Min take akun" target="_blank"><img src="c.png" alt="Flash 1"></a></div>
+    <div class="flash-item"><a href="https://wa.me/6282328581304?text=Min take akun" target="_blank"><img src="c.png" alt="Flash 1"></a></div>
+    <div class="flash-item"><a href="https://wa.me/6282328581304?text=Min take akun" target="_blank"><img src="c.png" alt="Flash 1"></a></div>
+    <div class="flash-item"><a href="https://wa.me/6282328581304?text=Min take akun" target="_blank"><img src="c.png" alt="Flash 1"></a></div>
+    
   </div>
 
   <div class="section-title">TOP UP GAME 💎</div>
