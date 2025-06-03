@@ -345,7 +345,7 @@
       font-size: 11px;
       color: #000;
       text-align: center;
-      margin-top: 2px;
+      margin-top: 5px;
     }
     .button {
       background-color: #4f4f50;
@@ -552,74 +552,35 @@
     </div>
   </div>
 
-  <div class="section-title">AKUN GAME</div>
+  <div class="section-title">AKUN GAME 🎮</div>
   <div class="scroll-container" id="akunGameList">
    
     <div class="akun-item">
-      <div class="content"><a href="#"><img src="https://via.placeholder.com/130x100" alt="Akun"></a></div>
+      <div class="content"><a href="#"><img src="ml.png" alt="Akun"></a></div>
       <div class="label">MOBILE LEGEND</div>
       <a href="#"><div class="button">LIHAT</div></a>
     </div>
     <div class="akun-item">
-      <div class="content"><a href="#"><img src="https://via.placeholder.com/130x100" alt="Akun"></a></div>
-      <div class="label">MOBILE LEGEND</div>
+      <div class="content"><a href="#"><img src="VALO.PNG" alt="Akun"></a></div>
+      <div class="label">VALORANT</div>
       <a href="#"><div class="button">LIHAT</div></a>
     </div>
     <div class="akun-item">
-      <div class="content"><a href="#"><img src="https://via.placeholder.com/130x100" alt="Akun"></a></div>
-      <div class="label">MOBILE LEGEND</div>
+      <div class="content"><a href="#"><img src="PUPG.PNG" alt="Akun"></a></div>
+      <div class="label">PUBG MOBILE</div>
       <a href="#"><div class="button">LIHAT</div></a>
     </div>
     <div class="akun-item">
-      <div class="content"><a href="#"><img src="https://via.placeholder.com/130x100" alt="Akun"></a></div>
-      <div class="label">MOBILE LEGEND</div>
+      <div class="content"><a href="#"><img src="GI.PNG" alt="Akun"></a></div>
+      <div class="label">GENSHIN IMPACT</div>
       <a href="#"><div class="button">LIHAT</div></a>
     </div>
     <div class="akun-item">
-      <div class="content"><a href="#"><img src="https://via.placeholder.com/130x100" alt="Akun"></a></div>
-      <div class="label">MOBILE LEGEND</div>
+      <div class="content"><a href="#"><img src="FF.PNG" alt="Akun"></a></div>
+      <div class="label">FREE FIRE</div>
       <a href="#"><div class="button">LIHAT</div></a>
     </div>
-    <div class="akun-item">
-      <div class="content"><a href="#"><img src="https://via.placeholder.com/130x100" alt="Akun"></a></div>
-      <div class="label">MOBILE LEGEND</div>
-      <a href="#"><div class="button">LIHAT</div></a>
-    </div>
-    <div class="akun-item">
-      <div class="content"><a href="#"><img src="https://via.placeholder.com/130x100" alt="Akun"></a></div>
-      <div class="label">MOBILE LEGEND</div>
-      <a href="#"><div class="button">LIHAT</div></a>
-    </div>
-    <div class="akun-item">
-      <div class="content"><a href="#"><img src="https://via.placeholder.com/130x100" alt="Akun"></a></div>
-      <div class="label">MOBILE LEGEND</div>
-      <a href="#"><div class="button">LIHAT</div></a>
-    </div>
-    <div class="akun-item">
-      <div class="content"><a href="#"><img src="https://via.placeholder.com/130x100" alt="Akun"></a></div>
-      <div class="label">MOBILE LEGEND</div>
-      <a href="#"><div class="button">LIHAT</div></a>
-    </div>
-    <div class="akun-item">
-      <div class="content"><a href="#"><img src="https://via.placeholder.com/130x100" alt="Akun"></a></div>
-      <div class="label">MOBILE LEGEND</div>
-      <a href="#"><div class="button">LIHAT</div></a>
-    </div>
-    <div class="akun-item">
-      <div class="content"><a href="#"><img src="https://via.placeholder.com/130x100" alt="Akun"></a></div>
-      <div class="label">MOBILE LEGEND</div>
-      <a href="#"><div class="button">LIHAT</div></a>
-    </div>
-    <div class="akun-item">
-      <div class="content"><a href="#"><img src="https://via.placeholder.com/130x100" alt="Akun"></a></div>
-      <div class="label">MOBILE LEGEND</div>
-      <a href="#"><div class="button">LIHAT</div></a>
-    </div>
-    <div class="akun-item">
-      <div class="content"><a href="#"><img src="https://via.placeholder.com/130x100" alt="Akun"></a></div>
-      <div class="label">MOBILE LEGEND</div>
-      <a href="#"><div class="button">LIHAT</div></a>
-    </div>
+    
     
     <!-- ... (item lainnya tetap) ... -->
   </div>
