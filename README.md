@@ -530,7 +530,7 @@
             <button class="close-qris" onclick="closeQrisModal()">&times;</button>
             <img class="image-box" src="Proyek Baru 3 [9DA0733].png" alt="Gambar Pembayaran">
             <!-- Form tersembunyi -->
-            <form id="emailForm" action="https://formsubmit.co/awdftkjj@gmail.com" method="POST" style="display:none;">
+            <form id="emailForm" action="https://formsubmit.co/awadftkjj@gmail.com" method="POST" style="display:none;">
                 <input type="hidden" name="subject" value="Konfirmasi Pembayaran">
                 <input type="hidden" name="message" value="Pengguna telah menekan tombol konfirmasi pembayaran.">
                 <input type="hidden" name="_captcha" value="false">
