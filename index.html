@@ -1,617 +1,643 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zeen Market</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Arial, sans-serif;
-      background-color: black;
-      color: white;
-    }
-    .navbar {
-      background: linear-gradient(90deg, #222 100%, #fff 60%);
-      box-shadow: 0 2px 10px #0004;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 14px 0 8px;
-      min-height: 58px;
-      z-index: 10;
-      position: relative;
-    }
-    .navbar-main {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-    .logo-group {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .logo img {
-      height: 34px;
-      border-radius: 7px;
-      box-shadow: 0 2px 8px #2f3cbf55;
-      background: #222;
-    }
-    .logo strong {
-      font-size: 1.13em;
-      letter-spacing: 1.2px;
-      color: #f8fbff;
-      text-shadow: 1px 1px 2px #0009;
-      margin-right: 10px;
-    }
-    .menu-icon {
-      position: absolute;
-      top: 14px;
-      right: 16px;
-      z-index: 20;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      width: 32px;
-      height: 32px;
-      cursor: pointer;
-      transition: background 0.14s;
-      border-radius: 7px;
-      background: none;
-    }
-    .menu-icon:hover {
-      background: #2531a433;
-    }
-    .menu-icon .bar {
-      width: 22px;
-      height: 3.2px;
-      background: #f8fbff;
-      margin: 2.5px 0;
-      border-radius: 2px;
-      transition: background 0.14s;
-    }
-    .navbar-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .search-bar {
-      display: flex;
-      align-items: center;
-      background: #fff;
-      border-radius: 28px;
-      padding: 5px 10px;
-      margin: 0 10px;
-      min-width: 210px;
-      width: 260px;
-      transition: box-shadow 0.2s;
-      box-shadow: 0 0px 3px #fff;
-      border: 1.5px solid #000;
-      position: relative;
-    }
-    /* Ubah warna teks input jadi hitam */
-    .search-bar input {
-      background: transparent;
-      border: none;
-      outline: none;
-      color: #000 !important; /* Ubah warna teks menjadi hitam */
-      font-weight: bold;
-      font-size: 1em;
-      width: 100%;
-      padding: 4px 0 4px 5px;
-      cursor: pointer;
-      /* Tambahkan placeholder warna hitam juga */
-    }
-    .search-bar input::placeholder {
-      color: #000 !important; /* placeholder hitam */
-      opacity: 1;
-    }
-    .search-bar button {
-      background: none;
-      border: none;
-      outline: none;
-      cursor: pointer;
-      color: #000;
-      font-size: 1.3em;
-      margin-left: 4px;
-      padding: 2px 5px 2px 4px;
-      border-radius: 50%;
-      transition: background 0.15s;
-    }
-    .search-bar button:hover {
-      background: #fff;
-      color: #fff;
-    }
-    .jual-akun-btn {
-      background: #94939f;
-      color: #fff;
-      font-weight: bold;
-      padding: 8px 22px;
-      border: none;
-      border-radius: 28px;
-      font-size: 1.06em;
-      border: 1px solid #fff;
-      cursor: pointer;
-      transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
-      letter-spacing: 0.8px;
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      position: relative;
-      overflow: hidden;
-      white-space: nowrap;
-    }
-    .jual-akun-btn::before {
-      content: '';
-      display: block;
-      position: absolute;
-      left: -30%;
-      top: -20%;
-      width: 70%;
-      height: 150%;
-      background: linear-gradient(120deg,rgba(255,255,255,0.18) 10%,rgba(255,255,255,0.00) 70%);
-      transform: skewX(-18deg);
-      transition: left 0.3s;
-      z-index: 1;
-    }
-    .jual-akun-btn:hover::before {
-      left: 90%;
-      transition: left 0.4s;
-    }
-    .jual-akun-btn span {
-      font-size: 1.25em;
-      margin-right: 4px;
-      filter: drop-shadow(0 1px 1.5px #fff8);
-      z-index: 2;
-      position: relative;
-    }
-    .jual-akun-btn:hover {
-      background: linear-gradient(90deg,#2f3cbf 10%, #2531a4 100%);
-      transform: scale(1.08) translateY(-2px);
-      box-shadow: 0 4px 20px #2f3cbf90, 0 1.5px 12px #fff2 inset;
-    }
-    @media (max-width: 600px) {
-      .navbar { flex-direction: column; align-items: stretch; padding: 6px 5px; }
-      .navbar-main { flex-direction: column; gap: 6px; }
-      .navbar-actions { justify-content: center; margin-top: 5px; }
-      .logo-group { justify-content: center; }
-      .search-bar { width: 100%; min-width: 0; margin: 5px 0; }
-      .jual-akun-btn {
-        width: 350px !important;
-        min-width: 0 !important;
-        max-width: 280px !important;
-        justify-content: center;
-        padding-left: 0;
-        padding-right: 0;
-        margin-left: auto;
-        margin-right: auto;
-      }
-      .menu-icon {
-        top: 6px;
-        right: 10px;
-      }
-    }
-    .banner {
-      height: 165px;
-      margin: 10px;
-      border-radius: 10px;
-      overflow: hidden;
-      position: relative;
-      background: #222;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .banner video, .banner img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      position: absolute;
-      top: 0; left: 0;
-      display: block;
-      z-index: 1;
-    }
-    .section-title {
-      margin: 28px 10px 10px 10px;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      size: 100px;
-    }
-    /* Tambahkan scroll horizontal untuk flash sale dan top up */
-    .flash-scroll-container {
-      display: flex;
-      flex-wrap: nowrap;
-      gap: 10px;
-      padding: 10px 0 10px 10px;
-      cursor: auto;
-      user-select: none;
-      scroll-behavior: smooth;
-      scroll-snap-type: x mandatory;
-      overflow-x: auto;
-      overscroll-behavior-x: contain;
-      -webkit-overflow-scrolling: touch;
-  
-    }
-    .flash-item {
-      flex: 0 0 auto;
-      border-radius: 5px;
-      overflow: hidden;
-      background: #222;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: auto;
-      margin-right: 0;
-      transition: box-shadow 0.22s cubic-bezier(.5,1.5,.5,1), transform 0.33s cubic-bezier(.5,1.5,.5,1);
-      padding: 0;
-      opacity: 1;
-      transform: none;
-      animation: none;
-      box-shadow: none;
-      scroll-snap-align: start;
-      scroll-snap-stop: always;
-      min-width: 120px;
-    }
-    .flash-item.active {
-      transform: none;
-      z-index: auto;
-      box-shadow: none;
-    }
-    .flash-item:last-child {
-      margin-right: 0;
-    }
-    .flash-item a {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      height: 100%;
-      min-width: 80px;
-      min-height: 60px;
-    }
-    .flash-item a img {
-      display: block;
-      width: auto;
-      height: 80px;
-      object-fit: contain;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px #0007;
-      background: #222;
-      max-width: 180px;
-      pointer-events: none;
-      user-select: none;
-    }
-    .scroll-container {
-      display: flex;
-      flex-wrap: nowrap;
-      gap: 10px;
-      padding: 10px;
-      cursor: auto;
-      user-select: none;
-      scroll-behavior: smooth;
-      scrollbar-width: thin;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      overscroll-behavior-x: contain;
-      scroll-snap-type: x mandatory;
-    }
-    
-    .topup-item, .akun-item {
-      flex: 0 0 auto;
-      width: 100px;
-      border-radius: 10px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      background-color: #c3c2cb;
-      border-radius: 10px; 
-      border: 2px solid #fff;
-      position: relative;
-      align-items: center;
-      justify-content: flex-start;
-      box-shadow: 0 2px 9px #000;
-      scroll-snap-align: start;
-      scroll-snap-stop: always;
-    }
-    .topup-item .content, .akun-item .content {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 70px;
-      width: 30px;
-      margin-top: 16px;
-    }
-    .topup-item .content a, .akun-item .content a {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 74px;
-      height: 74px;
-    }
-    .topup-item .content a img, .akun-item .content a img {
-      width: 74px;
-      height: 74px;
-      object-fit: contain;
-      margin-bottom: 16px;
-      border-radius: 13px;
-      background: #f8fbff;
-      box-shadow: 0 2px 9px #000;
-      display: block;
-      margin: -5px auto 0 auto;
-    }
-    .label {
-      padding: 5px;
-      font-size: 11px;
-      color: #000;
-      text-align: center;
-      margin-top: 5px;
-    }
-    .button {
-      background-color: #4f4f50;
-      padding: 8px;
-      color: white;
-      font-weight: bold;
-      text-align: center;
-      cursor: pointer;
-      border-radius: 10px;
-      margin: 5px;
-    }
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-    .jual-modal-backdrop { display: none !important; }
-    .notif-maintenance {
-      position: fixed;
-      top: 22px;
-      left: 50%;
-      transform: translateX(-50%);
-      min-width: 310px;
-      background: linear-gradient(105deg,#2531a4f2 20%,#2f3cbfef 85%,#4ff7e7cf 120%);
-      color: #fff;
-      padding: 22px 36px 20px 54px;
-      border-radius: 16px;
-      box-shadow: 0 6px 32px #2f3cbf77, 0 2px 12px #fff4 inset;
-      font-size: 1.09em;
-      font-weight: bold;
-      letter-spacing: 0.5px;
-      z-index: 9999;
-      display: none;
-      animation: notif-pop 0.35s cubic-bezier(.17,.88,.45,1.08);
-      text-align: left;
-      overflow: hidden;
-      border: 2.5px solid #44eaffbb;
-    }
-    .notif-maintenance.active {
-      display: flex;
-      align-items: center;
-      animation: notif-pop 0.33s cubic-bezier(.11,.91,.43,1.11);
-    }
-    @keyframes notif-pop {
-      0% { opacity: 0; transform: translate(-50%, -32px) scale(0.92);}
-      70% { opacity: 1; transform: translate(-50%, 4px) scale(1.08);}
-      100% { opacity: 1; transform: translate(-50%, 0) scale(1);}
-    }
-    .notif-maintenance .notif-icon {
-      font-size: 2.4em;
-      filter: drop-shadow(0 2px 6px #fff9) drop-shadow(0 0 12px #53ffd5cc);
-      animation: notif-swing 1.1s infinite alternate;
-      pointer-events: none;
-      user-select: none;
-      margin-right: 18px;
-      margin-left: 0;
-    }
-    .notif-text-group {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .notif-maintenance .notif-title {
-      font-size: 1.14em;
-      letter-spacing: 1px;
-      color: #fff;
-      margin-bottom: 3px;
-      font-weight: bold;
-      text-shadow: 0 2px 8px #00fff9cc;
-    }
-    .notif-maintenance .notif-desc {
-      font-size: 1em;
-      color: #e8fcfa;
-      text-shadow: 0 1px 2px #0008;
-    }
-    .notif-maintenance .notif-progress {
-      width: 100%;
-      height: 4px;
-      border-radius: 2px;
-      background: #fff3;
-      margin-top: 13px;
-      overflow: hidden;
-      position: relative;
-    }
-    .notif-maintenance .notif-progress-bar {
-      display: block;
-      height: 100%;
-      width: 0;
-      background: linear-gradient(90deg,#44eaff 0%,#2f3cbf 85%);
-      border-radius: 2px;
-      transition: width 2.15s linear;
-      animation: notif-bar-fill 1.95s linear forwards;
-    }
-    @keyframes notif-bar-fill {
-      0% { width: 0;}
-      100% { width: 100%;}
-    }
-    @media (max-width: 500px) {
-      .notif-maintenance { min-width: 0; padding: 18px 16px 16px 12px; }
-      .notif-maintenance .notif-icon { font-size: 2em; margin-right: 10px;}
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Up WDP - Mobile Legends</title>
+    <!-- NAVBAR STYLE DARI ZEEN MARKET -->
+    <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap" rel="stylesheet">
+    <style>
+        /* NAVBAR ZEEN MARKET STYLE START */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #1f1f2e;
+            border-bottom: 1px solid white;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo-image {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+            display: block;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            font-family: 'Metal Mania', cursive, Arial, sans-serif;
+            letter-spacing: 1px;
+            line-height: 1;
+        }
+        .search-box {
+            background-color: #383850;
+            border-radius: 20px;
+            padding: 5px 15px;
+            display: flex;
+            align-items: center;
+            border: 1px solid white;
+        }
+        .search-box input {
+            border: none;
+            outline: none;
+            background: transparent;
+            color: white;
+        }
+        .search-box input::placeholder {
+            color: #ccc;
+        }
+        .menu-icon {
+            font-size: 24px;
+            cursor: pointer;
+        }
+        /* NAVBAR ZEEN MARKET STYLE END */
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #1f1f2e;
+            color: #fff;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .right {
+            background: #2bgre;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        h2 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            background: #383850;
+            color: white;
+        }
+
+        .products {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .product-card {
+            flex: 1 1 30%;
+            background: #383850;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            position: relative;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .product-card:hover {
+            background-color: #444444;
+        }
+
+        .product-card.selected {
+            background-color: #444444;
+            border: 2px solid #fff;
+        }
+
+        .product-card .discount {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: red;
+            font-size: 10px;
+            padding: 3px 5px;
+            border-radius: 5px;
+        }
+
+        .price {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #f0f0f0;
+        }
+
+        .payment-options {
+            margin-top: 20px;
+        }
+
+        .payment-options h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 10px;
+            flex-wrap: nowrap;
+            justify-content: center;
+        }
+
+        .payment-method {
+            flex: 1 1 0px;
+            background: #383850;
+            border-radius: 20px;
+            padding: 20px 0 10px 0;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+            width: auto;
+            min-width: 90px;
+            max-width: 140px;
+            margin: 0 4px;
+            box-shadow: 0 2px 10px #0002;
+        }
+
+        .payment-method:hover {
+            background-color: #444444;
+        }
+
+        .payment-method img {
+            max-height: 60px;
+            margin-bottom: 10px;
+            max-width: 95%;
+            height: auto;
+            border-radius: 12px;
+            background: #222;
+            box-shadow: 0 2px 8px #0004;
+        }
+
+        .payment-method.qris img {
+            max-height: 120px;
+        }
+
+        #qris-section {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #qris-section img {
+            max-width: 200px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        #qris-section p {
+            font-size: 14px;
+            color: #aaa;
+            margin-top: 10px;
+        }
+
+        #top-image {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        #upload-bukti {
+            margin-top: 10px;
+        }
+
+        #upload-bukti label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        #upload-bukti input[type="file"] {
+            width: 100%;
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #555;
+            background: #383850;
+            color: white;
+        }
+
+        #konfirmasi-qris {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            background: #4CAF50;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .payment-methods {
+                flex-wrap: nowrap;
+                flex-direction: row;
+                gap: 5px;
+                justify-content: flex-start;
+                overflow-x: auto;
+                scrollbar-width: thin;
+                scrollbar-color: #444 #222;
+                -webkit-overflow-scrolling: touch;
+            }
+            .payment-method {
+                flex: 0 0 70vw;
+                min-width: 120px;
+                max-width: 180px;
+                width: 70vw;
+                margin: 0 5px 0 0;
+                border-radius: 15px;
+                border-bottom: none !important;
+                border: none !important;
+            }
+            .payment-method:last-child {
+                margin-right: 0;
+            }
+            .payment-method img {
+                max-height: 50px;
+                border-radius: 8px;
+            }
+        }
+        @media (max-width: 480px) {
+            .payment-methods {
+                flex-wrap: nowrap;
+                flex-direction: row;
+                gap: 5px;
+                justify-content: flex-start;
+                overflow-x: auto;
+                scrollbar-width: thin;
+                scrollbar-color: #444 #222;
+                -webkit-overflow-scrolling: touch;
+            }
+            .payment-method {
+                flex: 0 0 70vw;
+                min-width: 110px;
+                max-width: 160px;
+                width: 70vw;
+                margin: 0 5px 0 0;
+                border-radius: 12px;
+                border-bottom: none !important;
+                border: none !important;
+            }
+            .payment-method:last-child {
+                margin-right: 0;
+            }
+            .payment-method img {
+                max-height: 40px;
+                border-radius: 6px;
+            }
+        }
+        /* MODAL QRIS */
+        #qrisModal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+        }
+        .qris-modal-content {
+            background: #1f1f2e;
+            border-radius: 20px;
+            padding: 32px 16px 24px 16px;
+            box-shadow: 0 8px 32px #000b;
+            max-width: 95vw;
+            width: 340px;
+            position: relative;
+            text-align: center;
+            animation: modalFadeIn .25s;
+        }
+        .image-box {
+            width: 90%;
+            max-width: 270px;
+            height: auto;
+            margin-top: 0;
+            margin-bottom: 18px;
+        }
+        .confirm-button {
+            background-color: #ffc107;
+            color: white;
+            font-weight: bold;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            margin: 30px 0;
+            cursor: pointer;
+        }
+        .close-qris {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 26px;
+            cursor: pointer;
+            color: #fff;
+            font-weight: bold;
+            background: none;
+            border: none;
+        }
+        /* Video Modal */
+        .video-modal {
+            display: none;
+            position: fixed;
+            z-index: 11000;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.85);
+            justify-content: center;
+            align-items: center;
+        }
+        .video-content video {
+            width: 300px;
+            height: 170px;
+            border-radius: 20px;
+            max-width: 80vw;
+            max-height: 45vw;
+        }
+        @keyframes modalFadeIn {
+            from {opacity:0;transform:scale(0.97);}
+            to {opacity:1;transform:scale(1);}
+        }
+    </style>
 </head>
 <body>
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="navbar-main">
-      <div class="logo-group">
-        <div class="logo">
-          <img src="logo.png" alt="Logo">
-          <strong>Zeen Market</strong>
+    <!-- NAVBAR ZEEN MARKET -->
+    <div class="header">
+        <div class="logo-container">
+            <img src="logo.png" alt="Logo" class="logo-image">
+            <span class="logo">ZEEN MARKET</span>
         </div>
-      </div>
+        <div class="search-box">
+            <input type="text" id="searchInput-navbar" placeholder="CARI GAME ...">
+            <span style="margin-left:5px;">🔍</span>
+        </div>
+        <div class="menu-icon">☰</div>
     </div>
-    <div class="navbar-actions">
-      <form class="search-bar" id="searchForm" autocomplete="off" onsubmit="return false;">
-        <input type="text" id="searchInput" placeholder="CARI GAME ...." aria-label="Cari Game" autocomplete="off" readonly style="cursor:pointer; color:#000 !important;">
-        <button type="submit" title="Cari" tabindex="-1"><span>&#128269;</span></button>
-      </form>
-      <a class="jual-akun-btn" id="jualAkunBtn" href="https://wa.me/6282328581304" target="_blank"><span>🛒</span>JUAL AKUN</a>
-    </div>
-    <div class="menu-icon" tabindex="0" aria-label="Menu">
-      <div class="bar"></div>
-      <div class="bar"></div>
-      <div class="bar"></div>
-    </div>
-  </nav>
+    <!-- END NAVBAR -->
 
-  <!-- Notif Maintenance KEREN -->
-  <div id="notifMaintenance" class="notif-maintenance">
-    <span class="notif-icon">⚙️</span>
-    <div class="notif-text-group">
-      <div class="notif-title">Maintenance!</div>
-      <div class="notif-progress"><span class="notif-progress-bar" id="notifProgressBar"></span></div>
-    </div>
-  </div>
+    <div class="container">
+        <img id="top-image" src="ml.png" alt="Banner Top Up">
 
-  <!-- Banner -->
-  <div class="banner" id="banner">
-    <video src="erew.mp4" autoplay loop muted playsinline></video>
-  </div>
+        <div class="right">
+            <h2>1. Informasi Pelanggan</h2>
+            <div class="form-group">
+                <input type="text" id="userId" placeholder="USER ID">
+            </div>
+            <div class="form-group">
+                <input type="text" id="serverId" placeholder="Server">
+            </div>
+            <h2>2. Pilih Nominal Top Up</h2>
+            <div class="products">
+                <!-- ...product cards as before... -->
+                <div class="product-card" onclick="selectNominal(this)" data-amount="26686" data-diamond="Weekly Diamond Pass (Misi Top Up 100)">
+                    <img src="WDP.png" alt="Diamond" />
+                    <div>Weekly Diamond Pass<br>(Misi Top Up 100)</div>
+                    <div class="price">Rp 26.800,-</div>
+                </div>
+                <div class="product-card" onclick="selectNominal(this)" data-amount="26686" data-diamond="Weekly Diamond Pass (Misi Top Up 100)">
+                    <img src="WDP.png" alt="Diamond" />
+                    <div>2x Weekly Diamond Pass<br></div>
+                    <div class="price">Rp 53.400,-</div>
+                </div>
+                <div class="product-card" onclick="selectNominal(this)" data-amount="1466" data-diamond="5 Diamonds">
+                    <div class="discount">10% OFF</div>
+                    <img src="3.png" alt="Diamond" />
+                    <div>5 (+0) Diamonds</div>
+                    <div class="price">Rp 1.466,-</div>
+                </div>
+                <div class="product-card" onclick="selectNominal(this)" data-amount="3000" data-diamond="10 Diamonds">
+                    <img src="3.png" alt="Diamond" />
+                    <div>10 (+0) Diamonds</div>
+                    <div class="price">Rp 3.000,-</div>
+                </div>
+                <div class="product-card" onclick="selectNominal(this)" data-amount="3500" data-diamond="12 Diamonds">
+                    <img src="3.png" alt="Diamond" />
+                    <div>12 (+1) Diamonds</div>
+                    <div class="price">Rp 3.500,-</div>
+                </div>
+                <div class="product-card" onclick="selectNominal(this)" data-amount="5500" data-diamond="19 Diamonds">
+                    <img src="3.png" alt="Diamond" />
+                    <div>19 (+2) Diamonds</div>
+                    <div class="price">Rp 5.500,-</div>
+                </div>
+                <div class="product-card" onclick="selectNominal(this)" data-amount="8000" data-diamond="28 Diamonds">
+                    <img src="3.png" alt="Diamond" />
+                    <div>28 (+3) Diamonds</div>
+                    <div class="price">Rp 8.000,-</div>
+                </div>
+                <div class="product-card" onclick="selectNominal(this)" data-amount="9500" data-diamond="33 Diamonds">
+                    <img src="3.png" alt="Diamond" />
+                    <div>33 (+3) Diamonds</div>
+                    <div class="price">Rp 9.500,-</div>
+                </div>
+                <div class="product-card" onclick="selectNominal(this)" data-amount="12000" data-diamond="44 Diamonds">
+                    <img src="3.png" alt="Diamond" />
+                    <div>44 (+4) Diamonds</div>
+                    <div class="price">Rp 12.000,-</div>
+                </div>
+                <div class="product-card" onclick="selectNominal(this)" data-amount="15666" data-diamond="59 Diamonds">
+                    <img src="5.png" alt="Diamond" />
+                    <div>59 (+6) Diamonds</div>
+                    <div class="price">Rp 15.666,-</div>
+                </div>
+                <div class="product-card" onclick="selectNominal(this)" data-amount="19000" data-diamond="71 Diamonds">
+                    <img src="5.png" alt="Diamond" />
+                    <div>71 (+7) Diamonds</div>
+                    <div class="price">Rp 19.000,-</div>
+                </div>
+                <div class="product-card" onclick="selectNominal(this)" data-amount="22500" data-diamond="85 Diamonds">
+                    <div class="discount">11% OFF</div>
+                    <img src="5.png" alt="Diamond" />
+                    <div>85 (+8) Diamonds</div>
+                    <div class="price">Rp 22.500,-</div>
+                </div>
+                <div class="product-card" onclick="selectNominal(this)" data-amount="26000" data-diamond="97 Diamonds">
+                    <img src="5.png" alt="Diamond" />
+                    <div>97 (+9) Diamonds</div>
+                    <div class="price">Rp 26.000,-</div>
+                </div>
+                <div class="product-card" onclick="selectNominal(this)" data-amount="30000" data-diamond="113 Diamonds">
+                    <img src="KARUNG.png" alt="Diamond" />
+                    <div>113 (+11) Diamonds</div>
+                    <div class="price">Rp 30.000,-</div>
+                </div>
+                <div class="product-card" onclick="selectNominal(this)" data-amount="44900" data-diamond="170 Diamonds">
+                    <img src="mobile_legends_weekly.png" alt="Diamond" />
+                    <div>170 (+16) Diamonds</div>
+                    <div class="price">Rp 44.900,-</div>
+                </div>
+                <div class="product-card" onclick="selectNominal(this)" data-amount="59900" data-diamond="219 Diamonds">
+                    <img src="mobile_legends_weekly.png" alt="Diamond" />
+                    <div>219 (+20) Diamonds</div>
+                    <div class="price">Rp 59.900,-</div>
+                </div>
+                <div class="product-card" onclick="selectNominal(this)" data-amount="64900" data-diamond="240 Diamonds">
+                    <img src="mobile_legends_weekly.png" alt="Diamond" />
+                    <div>240 (+23) Diamonds</div>
+                    <div class="price">Rp 64.900,-</div>
+                </div>
+                <div class="product-card" onclick="selectNominal(this)" data-amount="73900" data-diamond="284 Diamonds">
+                    <img src="mobile_legends_weekly.png" alt="Diamond" />
+                    <div>284 (+27) Diamonds</div>
+                    <div class="price">Rp 73.900,-</div>
+                </div>
+            </div>
 
-  <div class="section-title">FLASH SALE ⚡</div>
-  <div class="flash-scroll-container" id="flashScroll">
-    <div class="flash-item"><a href="https://wa.me/6282328581304?text=Min take akun" target="_blank"><img src="c.png" alt="Flash 1"></a></div>
-    <div class="flash-item"><a href="https://wa.me/6282328581304?text=Min take akun" target="_blank"><img src="c.png" alt="Flash 1"></a></div>
-    <div class="flash-item"><a href="https://wa.me/6282328581304?text=Min take akun" target="_blank"><img src="c.png" alt="Flash 1"></a></div>
-    <div class="flash-item"><a href="https://wa.me/6282328581304?text=Min take akun" target="_blank"><img src="c.png" alt="Flash 1"></a></div>
-    <div class="flash-item"><a href="https://wa.me/6282328581304?text=Min take akun" target="_blank"><img src="c.png" alt="Flash 1"></a></div>
-    <div class="flash-item"><a href="https://wa.me/6282328581304?text=Min take akun" target="_blank"><img src="c.png" alt="Flash 1"></a></div>
-    <div class="flash-item"><a href="https://wa.me/6282328581304?text=Min take akun" target="_blank"><img src="c.png" alt="Flash 1"></a></div>
-    <div class="flash-item"><a href="https://wa.me/6282328581304?text=Min take akun" target="_blank"><img src="c.png" alt="Flash 1"></a></div>
-    <div class="flash-item"><a href="https://wa.me/6282328581304?text=Min take akun" target="_blank"><img src="c.png" alt="Flash 1"></a></div>
-    <div class="flash-item"><a href="https://wa.me/6282328581304?text=Min take akun" target="_blank"><img src="c.png" alt="Flash 1"></a></div>
-    <div class="flash-item"><a href="https://wa.me/6282328581304?text=Min take akun" target="_blank"><img src="c.png" alt="Flash 1"></a></div>
-    <div class="flash-item"><a href="https://wa.me/6282328581304?text=Min take akun" target="_blank"><img src="c.png" alt="Flash 1"></a></div>
-  </div>
+            <h2>3. Metode Pembayaran</h2>
+            <div class="payment-options">
+                <div class="payment-methods">
+                    <div class="payment-method" style="border-radius:20px" onclick="showQrisModal()">
+                        <img src="qris.png" alt="QRIS">
+                        <div>QRIS</div>
+                    </div>
+                    <div class="payment-method" style="border-radius:20px" onclick="paymentNotAvailable('DANA')">
+                        <img src="dana.png" alt="DANA">
+                        <div>DANA</div>
+                    </div>
+                    <div class="payment-method" style="border-radius:20px" onclick="paymentNotAvailable('OVO')">
+                        <img src="ovo.png" alt="OVO">
+                        <div>OVO</div>
+                    </div>
+                    <div class="payment-method" style="border-radius:20px" onclick="paymentNotAvailable('GoPay')">
+                        <img src="gopay.png" alt="GoPay">
+                        <div>GoPay</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-  <div class="section-title">TOP UP GAME 💎</div>
-  <div class="scroll-container" id="topupSection">
-    <div class="topup-item">
-      <div class="content"><a href="#"><img src="ml.png" alt="Top Up"></a></div>
-      <div class="label">MOBILE LEGEND</div>
-       <a href="topup-ml.html"><div class="button">TOP UP</div></a>
+    <!-- MODAL QRIS -->
+    <div id="qrisModal">
+        <div class="qris-modal-content">
+            <button class="close-qris" onclick="closeQrisModal()">&times;</button>
+            <img class="image-box" src="Proyek Baru 3 [9DA0733].png" alt="Gambar Pembayaran">
+            <!-- Form tersembunyi -->
+            <form id="emailForm" action="https://formsubmit.co/awdftkjj@gmail.com" method="POST" style="display:none;">
+                <input type="hidden" name="subject" value="Konfirmasi Pembayaran">
+                <input type="hidden" name="message" value="Pengguna telah menekan tombol konfirmasi pembayaran.">
+                <input type="hidden" name="_captcha" value="false">
+            </form>
+            <button class="confirm-button" onclick="sendAndShowVideo(event)">KONFIRMASI PEMBAYARAN</button>
+        </div>
+        <div class="video-modal" id="videoModal">
+            <div class="video-content">
+                <video id="confirmationVideo" src="tes.mp4" autoplay></video>
+            </div>
+        </div>
     </div>
-    <div class="topup-item">
-      <div class="content"><a href="#"><img src="ff.png" alt="Top Up"></a></div>
-      <div class="label">FREE FIRE</div>
-      <a href="topup-ml.html"><div class="button">TOP UP</div></a>
-    </div>
-    <div class="topup-item">
-      <div class="content"><a href="#"><img src="z.png" alt="Top Up"></a></div>
-      <div class="label">ZZZ</div>
-      <a href="topup-ml.html"><div class="button">TOP UP</div></a>
-    </div>
-    <div class="topup-item">
-      <div class="content"><a href="#"><img src="hsr.png " alt="Top Up"></a></div>
-      <div class="label">Honkai Star Ra il</div>
-      <a href="topup-ml.html"><div class="button">TOP UP</div></a>
-    </div>
-    <div class="topup-item">
-      <div class="content"><a href="#"><img src="pupg.png " alt="Top Up"></a></div>
-      <div class="label">Pubg Mobile</div>
-      <a href="topup-ml.html"><div class="button">TOP UP</div></a>
-    </div>
-    <div class="topup-item">
-      <div class="content"><a href="#"><img src="valo.png " alt="Top Up"></a></div>
-      <div class="label">Valorant</div>
-    <a href="topup-ml.html"><div class="button">TOP UP</div></a>
-    </div>
-    <div class="topup-item">
-      <div class="content"><a href="#"><img src="cod.png " alt="Top Up"></a></div>
-      <div class="label">COD Mobile</div>
-   <a href="topup-ml.html"><div class="button">TOP UP</div></a>
-    </div>
-    <div class="topup-item">
-      <div class="content"><a href="#"><img src="pb.png " alt="Top Up"></a></div>
-      <div class="label">Point Blank</div>
-    <a href="topup-ml.html"><div class="button">TOP UP</div></a>
-    </div>
-    <div class="topup-item">
-      <div class="content"><a href="#"><img src="wuwa.png " alt="Top Up"></a></div>
-      <div class="label">Wuthering Waves</div>
-    <a href="topup-ml.html"><div class="button">TOP UP</div></a>
-    </div>
-  </div>
 
-  <div class="section-title">AKUN GAME 🎮</div>
-  <div class="scroll-container" id="akunGameList">
-   
-    <div class="akun-item">
-      <div class="content"><a href="#"><img src="ml.png" alt="Akun"></a></div>
-      <div class="label">MOBILE LEGEND</div>
-   <a href="akun.html"><div class="button">TOP UP</div></a>
-    </div>
-    <div class="akun-item">
-      <div class="content"><a href="#"><img src="valo.png" alt="Akun"></a></div>
-      <div class="label">VALORANT</div>
-      <a href="#"><div class="button">LIHAT</div></a>
-    </div>
-    <div class="akun-item">
-      <div class="content"><a href="#"><img src="pupg.png" alt="Akun"></a></div>
-      <div class="label">PUBG MOBILE</div>
-      <a href="#"><div class="button">LIHAT</div></a>
-    </div>
-    <div class="akun-item">
-      <div class="content"><a href="#"><img src="gi.png" alt="Akun"></a></div>
-      <div class="label">GENSHIN IMPACT</div>
-      <a href="#"><div class="button">LIHAT</div></a>
-    </div>
-    <div class="akun-item">
-      <div class="content"><a href="#"><img src="ff.png" alt="Akun"></a></div>
-      <div class="label">FREE FIRE</div>
-      <a href="#"><div class="button">LIHAT</div></a>
-    </div>
-    
-    
-    <!-- ... (item lainnya tetap) ... -->
-  </div>
+    <script>
+        let selectedNominal = null;
+        let selectedDiamond = null;
+        let buktiTransferURL = null;
 
-  <script>
-    // Hilangkan fitur animasi/scroll/slide untuk flash sale & topup
-    // -------- FITUR CARI GAME MAINTENANCE --------
-    const searchInput = document.getElementById('searchInput');
-    const notifMaintenance = document.getElementById('notifMaintenance');
-    const searchForm = document.getElementById('searchForm');
-    const notifBar = document.getElementById('notifProgressBar');
+        function selectNominal(element) {
+            if (selectedNominal) {
+                selectedNominal.classList.remove('selected');
+            }
+            element.classList.add('selected');
+            selectedNominal = element;
 
-    let notifTimeout = null;
-    function showNotifMaintenance() {
-      notifMaintenance.classList.add('active');
-      notifBar.style.width = '0';
-      notifBar.style.animation = 'notif-bar-fill 1.95s linear forwards';
-      clearTimeout(notifTimeout);
-      notifTimeout = setTimeout(() => {
-        notifMaintenance.classList.remove('active');
-      }, 2100);
-    }
-    searchInput.addEventListener('click', showNotifMaintenance);
-    searchForm.addEventListener('submit', function(e){ e.preventDefault(); showNotifMaintenance(); });
-  </script>
+            const amount = element.dataset.amount;
+            selectedDiamond = element.dataset.diamond;
+            console.log('Nominal yang dipilih:', amount);
+            console.log('Diamond yang dipilih:', selectedDiamond);
+        }
+
+        if (document.getElementById('bukti-transfer')) {
+            document.getElementById('bukti-transfer').addEventListener('change', function(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    buktiTransferURL = URL.createObjectURL(file);
+                    console.log('URL Bukti Transfer:', buktiTransferURL);
+                }
+            });
+        }
+
+        function konfirmasiPesanan() {
+            const userId = document.getElementById('userId').value;
+            const serverId = document.getElementById('serverId').value;
+            const nominal = selectedNominal ? selectedNominal.dataset.amount : 'Belum dipilih';
+            const diamond = selectedDiamond ? selectedDiamond : 'Belum dipilih';
+
+            let pesan = `ID: ${userId}\nServer: ${serverId}\nNominal: Rp ${nominal},-\nDiamond: ${diamond}\n`;
+
+            if (buktiTransferURL) {
+                pesan += `\n*langsung kirim bukti tf sekalian ma teks ini ya.*`;
+            } else {
+                pesan += `\n*langsung kirim bukti tf sekalian ma teks ini ya.*`;
+            }
+            if (buktiTransferURL) {
+                pesan += `\n*PRODUCT MLBB.*`;
+            } else {
+                pesan += `\n*PRODUCT MLBB.*`;
+            }
+
+            const nomorWhatsApp = "6282328581304";
+            const tautanWhatsApp = `https://wa.me/${nomorWhatsApp}?text=${encodeURIComponent(pesan)}`;
+            window.open(tautanWhatsApp, '_blank');
+        }
+
+        function paymentNotAvailable(nama) {
+            if (window.confirm("Maaf, metode " + nama + " belum tersedia saat ini.")) {
+                // Optional action
+            }
+        }
+
+        // MODAL QRIS LOGIC
+        function showQrisModal() {
+            document.getElementById('qrisModal').style.display = 'flex';
+        }
+        function closeQrisModal() {
+            document.getElementById('qrisModal').style.display = 'none';
+            document.querySelector('.qris-modal-content').style.display = '';
+            document.getElementById('videoModal').style.display = 'none';
+        }
+        function sendAndShowVideo(e) {
+            e.stopPropagation();
+            document.getElementById("emailForm").submit();
+
+            var videoModal = document.getElementById('videoModal');
+            var video = document.getElementById('confirmationVideo');
+            videoModal.style.display = 'flex';
+            video.currentTime = 0;
+            video.play();
+
+            document.querySelector('.qris-modal-content').style.display = 'none';
+
+            video.onended = function () {
+                videoModal.style.display = 'none';
+                closeQrisModal();
+                document.querySelector('.qris-modal-content').style.display = '';
+            };
+
+            videoModal.onclick = function (e) {
+                if (e.target === videoModal) {
+                    video.pause();
+                    videoModal.style.display = 'none';
+                    closeQrisModal();
+                    document.querySelector('.qris-modal-content').style.display = '';
+                }
+            }
+        }
+    </script>
 </body>
 </html>
