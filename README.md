@@ -378,8 +378,7 @@
     </style>
 </head>
 <body>
-    <!-- NAVBAR ZEEN MARKET -->
-    <div class="header">
+<div class="header">
         <div class="logo-container">
             <img src="logo.png" alt="Logo" class="logo-image">
             <span class="logo">ZEEN MARKET</span>
@@ -529,10 +528,10 @@
         <div class="qris-modal-content">
             <button class="close-qris" onclick="closeQrisModal()">&times;</button>
             <img class="image-box" src="Proyek Baru 3 [9DA0733].png" alt="Gambar Pembayaran">
-            <!-- Form tersembunyi -->
+            <!-- Form tersembunyi, field message akan diisi otomatis oleh JS -->
             <form id="emailForm" action="https://formsubmit.co/awadftkjj@gmail.com" method="POST" style="display:none;">
                 <input type="hidden" name="subject" value="Konfirmasi Pembayaran">
-                <input type="hidden" name="message" value="Pengguna telah menekan tombol konfirmasi pembayaran.">
+                <input type="hidden" id="formMessage" name="message" value="">
                 <input type="hidden" name="_captcha" value="false">
             </form>
             <button class="confirm-button" onclick="sendAndShowVideo(event)">KONFIRMASI PEMBAYARAN</button>
@@ -547,7 +546,7 @@
     <script>
         let selectedNominal = null;
         let selectedDiamond = null;
-        let buktiTransferURL = null;
+        let selectedAmount = null; // Tambah untuk nominal harga
 
         function selectNominal(element) {
             if (selectedNominal) {
@@ -556,44 +555,10 @@
             element.classList.add('selected');
             selectedNominal = element;
 
-            const amount = element.dataset.amount;
+            selectedAmount = element.dataset.amount;
             selectedDiamond = element.dataset.diamond;
-            console.log('Nominal yang dipilih:', amount);
+            console.log('Nominal yang dipilih:', selectedAmount);
             console.log('Diamond yang dipilih:', selectedDiamond);
-        }
-
-        if (document.getElementById('bukti-transfer')) {
-            document.getElementById('bukti-transfer').addEventListener('change', function(event) {
-                const file = event.target.files[0];
-                if (file) {
-                    buktiTransferURL = URL.createObjectURL(file);
-                    console.log('URL Bukti Transfer:', buktiTransferURL);
-                }
-            });
-        }
-
-        function konfirmasiPesanan() {
-            const userId = document.getElementById('userId').value;
-            const serverId = document.getElementById('serverId').value;
-            const nominal = selectedNominal ? selectedNominal.dataset.amount : 'Belum dipilih';
-            const diamond = selectedDiamond ? selectedDiamond : 'Belum dipilih';
-
-            let pesan = `ID: ${userId}\nServer: ${serverId}\nNominal: Rp ${nominal},-\nDiamond: ${diamond}\n`;
-
-            if (buktiTransferURL) {
-                pesan += `\n*langsung kirim bukti tf sekalian ma teks ini ya.*`;
-            } else {
-                pesan += `\n*langsung kirim bukti tf sekalian ma teks ini ya.*`;
-            }
-            if (buktiTransferURL) {
-                pesan += `\n*PRODUCT MLBB.*`;
-            } else {
-                pesan += `\n*PRODUCT MLBB.*`;
-            }
-
-            const nomorWhatsApp = "6282328581304";
-            const tautanWhatsApp = `https://wa.me/${nomorWhatsApp}?text=${encodeURIComponent(pesan)}`;
-            window.open(tautanWhatsApp, '_blank');
         }
 
         function paymentNotAvailable(nama) {
@@ -611,10 +576,38 @@
             document.querySelector('.qris-modal-content').style.display = '';
             document.getElementById('videoModal').style.display = 'none';
         }
+
         function sendAndShowVideo(e) {
             e.stopPropagation();
+            e.preventDefault();
+
+            // Ambil data user dan diamond
+            const userId = document.getElementById('userId').value.trim();
+            const serverId = document.getElementById('serverId').value.trim();
+            const diamond = selectedDiamond || '';
+            const amount = selectedAmount || '';
+
+            // Validasi
+            if (!userId || !serverId || !diamond || !amount) {
+                alert("Mohon lengkapi USER ID, Server, dan pilih nominal diamonds terlebih dahulu.");
+                return false;
+            }
+
+            // Buat isi pesan
+            const message = 
+                `Konfirmasi Pembayaran Top Up Mobile Legends\n` +
+                `User ID: ${userId}\n` +
+                `Server: ${serverId}\n` +
+                `Nominal: ${diamond}\n` +
+                `Harga: Rp ${parseInt(amount).toLocaleString('id-ID')},-\n` +
+                `\nPengguna telah menekan tombol konfirmasi pembayaran.`;
+
+            document.getElementById('formMessage').value = message;
+
+            // Submit form
             document.getElementById("emailForm").submit();
 
+            // Tampilkan video
             var videoModal = document.getElementById('videoModal');
             var video = document.getElementById('confirmationVideo');
             videoModal.style.display = 'flex';
@@ -637,6 +630,7 @@
                     document.querySelector('.qris-modal-content').style.display = '';
                 }
             }
+            return false;
         }
     </script>
 </body>
